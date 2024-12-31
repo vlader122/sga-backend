@@ -1,8 +1,8 @@
 package com.blumbit.vlader122.sga.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.blumbit.vlader122.sga.models.Personas;
@@ -13,8 +13,8 @@ public class PersonasService {
     @Autowired
     PersonasRepository personasRepository;
     
-    public List<Personas> listarPersonas() {
-        return personasRepository.findAll();
+    public Page<Personas> listarPersonas(Pageable pageable) {
+        return personasRepository.findAll(pageable);
     }
 
     public Personas obtenerById(Long id) {
@@ -29,12 +29,7 @@ public class PersonasService {
         personasRepository.deleteById(id);
     }
 
-    public Personas actualizar(Personas persona, long id) {
-        Personas personaActualizada = personasRepository.findById(id).orElse(null);
-        personaActualizada.nombre = persona.nombre;
-        personaActualizada.apellido = persona.apellido;
-        personaActualizada.email = persona.email;
-        personaActualizada.telefono = persona.telefono;
-        return personasRepository.save(personaActualizada);
+    public Personas actualizar(Personas persona) {
+        return personasRepository.save(persona);
     }
 }
