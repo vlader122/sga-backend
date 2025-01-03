@@ -1,0 +1,1 @@
+delete from public.personas where nombre in ('AAAAA', 'BBBBB');

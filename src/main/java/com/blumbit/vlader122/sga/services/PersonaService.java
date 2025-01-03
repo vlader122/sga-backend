@@ -5,23 +5,23 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.blumbit.vlader122.sga.models.Personas;
-import com.blumbit.vlader122.sga.repository.PersonasRepository;
+import com.blumbit.vlader122.sga.models.Persona;
+import com.blumbit.vlader122.sga.repository.PersonaRepository;
 
 @Service
-public class PersonasService {
+public class PersonaService {
     @Autowired
-    PersonasRepository personasRepository;
+    PersonaRepository personasRepository;
     
-    public Page<Personas> listarPersonas(Pageable pageable) {
+    public Page<Persona> listarPersonas(Pageable pageable) {
         return personasRepository.findAll(pageable);
     }
 
-    public Personas obtenerById(Long id) {
+    public Persona obtenerById(Long id) {
         return personasRepository.findById(id).orElse(null);
     }
 
-    public Personas guardar(Personas persona) {
+    public Persona guardar(Persona persona) {
         return personasRepository.save(persona);
     }
 
@@ -29,7 +29,7 @@ public class PersonasService {
         personasRepository.deleteById(id);
     }
 
-    public Personas actualizar(Personas persona) {
+    public Persona actualizar(Persona persona) {
         return personasRepository.save(persona);
     }
 }

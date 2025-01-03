@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blumbit.vlader122.sga.models.Personas;
-import com.blumbit.vlader122.sga.services.PersonasService;
+import com.blumbit.vlader122.sga.models.Activo;
+import com.blumbit.vlader122.sga.services.ActivoService;
 
 @RestController
-@RequestMapping("/api/v1/personas")
-public class PersonasController {
+@RequestMapping("/api/v1/activos")
+public class ActivoController {
 
     @Autowired
-    private PersonasService personasService;
+    private ActivoService activosService;
 
     @GetMapping
-    public ResponseEntity<Page<Personas>> listarPersonas(Pageable pageable) {
-        Page<Personas> personas = personasService.listarPersonas(pageable);
-        return ResponseEntity.ok(personas);
+    public ResponseEntity<Page<Activo>> listarPersonas(Pageable pageable) {
+        Page<Activo> activos = activosService.listarActivos(pageable);
+        return ResponseEntity.ok(activos);
     }
 
     @GetMapping("/{id}")
-    public Personas obtenerById(@PathVariable Long id) {
-        return personasService.obtenerById(id);
+    public Activo obtenerById(@PathVariable Long id) {
+        return activosService.obtenerById(id);
     }
 
     @PostMapping
-    ResponseEntity<Personas> guardar(@RequestBody Personas persona) {
-        personasService.guardar(persona);
+    ResponseEntity<Activo> guardar(@RequestBody Activo activo) {
+        activosService.guardar(activo);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        personasService.eliminar(id);
+        activosService.eliminar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping
-    ResponseEntity<Personas> actualizar(@RequestBody Personas persona) {
-        personasService.actualizar(persona);
+    ResponseEntity<Activo> actualizar(@RequestBody Activo activo) {
+        activosService.actualizar(activo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
