@@ -7,5 +7,5 @@ import com.blumbit.vlader122.sga.models.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    Usuario findByNombreUsuario(String nombreUsuario);
+    Usuario findByUsuario(String nombreUsuario);
 }
