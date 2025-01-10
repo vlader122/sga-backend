@@ -3,6 +3,7 @@ package com.blumbit.vlader122.sga.models;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,8 +30,8 @@ public class Asignacion {
     @JoinColumn(name = "idpersona", insertable = false, updatable = false)
     private Persona persona;
 
-    @OneToMany(mappedBy = "asignacion")
-    private List<DetalleAsignacion> detalleAsignacion;
+    @OneToMany(mappedBy = "asignacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<DetalleAsignacion> detalleAsignacion;
 
     public List<DetalleAsignacion> getDetalleAsignacion() {
         return detalleAsignacion;
