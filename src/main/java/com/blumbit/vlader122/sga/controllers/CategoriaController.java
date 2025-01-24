@@ -19,13 +19,13 @@ import com.blumbit.vlader122.sga.services.CategoriaService;
 
 @RestController
 @RequestMapping("/api/v1/categorias")
-public class CategoriaController {
+public class CategoriaController {  
 
     @Autowired
     private CategoriaService categoriasService;
 
     @GetMapping
-    public ResponseEntity<Page<Categoria>> listarPersonas(Pageable pageable) {
+    public ResponseEntity<Page<Categoria>> listarCategorias(Pageable pageable) {
         Page<Categoria> categorias = categoriasService.listarCategorias(pageable);
         return ResponseEntity.ok(categorias);
     }

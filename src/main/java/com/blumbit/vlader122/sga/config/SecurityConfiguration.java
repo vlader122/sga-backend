@@ -43,14 +43,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(request -> request
-                .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers(SWAGGER_WHITELIST).permitAll()
+                .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/**").authenticated()
                 .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAutentication, UsernamePasswordAuthenticationFilter.class)
-            .csrf(AbstractHttpConfigurer::disable)
-            .cors(Customizer.withDefaults());
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAutentication, UsernamePasswordAuthenticationFilter.class)
+            .cors(Customizer.withDefaults()); // Habilita CORS usando la configuración del bean
         return http.build();
     }
 
@@ -75,7 +75,10 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.applyPermitDefaultValues();
+        configuration.addAllowedOrigin("http://localhost:4200"); 
+        configuration.addAllowedMethod("*"); 
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true); 
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
