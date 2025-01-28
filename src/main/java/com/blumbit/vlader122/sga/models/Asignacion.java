@@ -36,4 +36,11 @@ public class Asignacion {
     public List<DetalleAsignacion> getDetalleAsignacion() {
         return detalleAsignacion;
     }
+    public Persona getPersona(){
+        return persona;
+    }
+
+    public Usuario getUsuario(){
+        return usuario;
+    }
 }
