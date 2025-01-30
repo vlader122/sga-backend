@@ -75,7 +75,7 @@ public class SecurityConfiguration {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("https://679bff50ba90c86f188ef794--sga-2024.netlify.app");
+        configuration.addAllowedOrigin("https://sga-2024.netlify.app");
         configuration.addAllowedMethod("*"); 
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true); 
