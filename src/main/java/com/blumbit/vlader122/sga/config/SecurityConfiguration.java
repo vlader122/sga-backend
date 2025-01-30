@@ -45,6 +45,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(request -> request
                 .requestMatchers(SWAGGER_WHITELIST).permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/v1/**").authenticated()
                 .anyRequest().authenticated())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
